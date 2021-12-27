@@ -5,10 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventsComponent } from './pages/events/events.component';
-import { WeatherComponent } from './pages/weather/weather.component';
 
 @NgModule({
-  declarations: [AppComponent, EventsComponent, WeatherComponent],
+  declarations: [AppComponent, EventsComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
