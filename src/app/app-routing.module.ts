@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'main', component: EventsComponent },
   { path: 'weather', component: WeatherComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '**', redirectTo: '/main', pathMatch: 'full' },
 ];
 
 const routerOptions: ExtraOptions = {
