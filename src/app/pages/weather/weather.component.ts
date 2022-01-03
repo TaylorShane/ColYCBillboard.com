@@ -14,7 +14,7 @@ export class WeatherComponent implements AfterContentInit, OnDestroy {
     'https://marine.weather.gov/MapClick.php?w0=t&w1=td&w2=wc&w3=sfcwind&w4=sky&w5=pop&w6=rh&w7=rain&w8=thunder&w14=wvhd&pqpfhr=6&psnwhr=6&AheadHour=0&Submit=Submit&&FcstType=graphical&textField1=41.9821&textField2=-87.6063&site=lot&menu=1',
   ];
   counter = 1;
-  iframe: any;
+  iframe = new HTMLIFrameElement();
   msPerSecond = 1000;
   seconds = 20 * this.msPerSecond;
   source = interval(this.seconds);
