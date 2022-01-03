@@ -6,7 +6,7 @@ import { interval, Subscription } from 'rxjs';
   selector: 'app-weather',
   templateUrl: './weather.component.html',
 })
-export class WeatherComponent implements AfterContentInit, OnDestroy {
+export class WeatherComponent implements OnDestroy {
   iframeSources = [
     'https://forecast.weather.gov/MapClick.php?lat=41.88544500000006&lon=-87.62229499999995#.YYgE9WDMJ1M',
     'https://iiseagrant.org/45198/',
@@ -14,7 +14,6 @@ export class WeatherComponent implements AfterContentInit, OnDestroy {
     'https://marine.weather.gov/MapClick.php?w0=t&w1=td&w2=wc&w3=sfcwind&w4=sky&w5=pop&w6=rh&w7=rain&w8=thunder&w14=wvhd&pqpfhr=6&psnwhr=6&AheadHour=0&Submit=Submit&&FcstType=graphical&textField1=41.9821&textField2=-87.6063&site=lot&menu=1',
   ];
   counter = 1;
-  iframe = new HTMLIFrameElement();
   msPerSecond = 1000;
   seconds = 20 * this.msPerSecond;
   source = interval(this.seconds);
@@ -24,22 +23,15 @@ export class WeatherComponent implements AfterContentInit, OnDestroy {
 
   constructor(public sanitizer: DomSanitizer) {}
 
-  ngAfterContentInit(): void {
-    this.iframe = document.getElementById('weatherIframe') as HTMLIFrameElement;
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   updateIframe() {
-    this.iframe.src = this.iframeSources[this.counter];
-    console.log(
-      'this.iframe',
-      this.iframe,
-      'is getting this source',
-      this.iframeSources[this.counter]
-    );
+    const iframe = document.getElementById(
+      'weatherIframe'
+    ) as HTMLIFrameElement;
+    iframe.src = this.iframeSources[this.counter];
     this.counter++;
     if (this.counter === this.iframeSources.length) {
       this.counter = 0;
