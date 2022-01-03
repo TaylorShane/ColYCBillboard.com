@@ -6,6 +6,7 @@ import { WeatherComponent } from './pages/weather/weather.component';
 const routes: Routes = [
   { path: 'main', component: EventsComponent },
   { path: 'weather', component: WeatherComponent },
+  { path: '/weather', redirectTo: 'weather', pathMatch: 'full' },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: '**', redirectTo: '/main', pathMatch: 'full' },
 ];
