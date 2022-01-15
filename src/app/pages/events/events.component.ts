@@ -8,7 +8,7 @@ import { interval, Subscription } from 'rxjs';
 })
 export class EventsComponent implements AfterContentInit, OnDestroy {
   msPerHour = 3600000;
-  hours = 12 * this.msPerHour;
+  hours = 6 * this.msPerHour;
   source = interval(this.hours);
   subscription: Subscription = this.source.subscribe((val) =>
     this.updateIframes()
