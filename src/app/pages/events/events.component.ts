@@ -1,19 +1,21 @@
 import { AfterContentInit, Component, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements AfterContentInit, OnDestroy {
   msPerHour = 3600000;
-  hours = 12 * this.msPerHour;
+  hours = 6 * this.msPerHour;
   source = interval(this.hours);
   subscription: Subscription = this.source.subscribe((val) =>
     this.updateIframes()
   );
   iframes: HTMLIFrameElement[] = [];
+
+  constructor(public sanitizer: DomSanitizer) {}
 
   ngAfterContentInit(): void {
     this.iframes = [
