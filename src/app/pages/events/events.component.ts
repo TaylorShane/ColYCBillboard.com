@@ -7,25 +7,23 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './events.component.html',
 })
 export class EventsComponent implements AfterContentInit, OnDestroy {
-  refreshSource = interval(6 * 3600000); // 6 * 3600000 = 6 hours
+  refreshSource = interval(3 * 3600000); // 3 * 3600000 = 3 hours
   refreshSubscription: Subscription = this.refreshSource.subscribe(() =>
     this.refreshIframes()
   );
-  slideDelaySource = interval(5000); // 5 seconds
+  slideDelaySource = interval(7500); // 7.5 seconds
   slideDelaySubscription: Subscription = this.slideDelaySource.subscribe(() =>
     this.startSlides()
   );
   slideStartCounter = 1;
   iframes: HTMLIFrameElement[] = [];
 
-  constructor(public sanitizer: DomSanitizer) {}
+  constructor(public sanitizer: DomSanitizer) { }
 
   ngAfterContentInit() {
     this.iframes = [
       document.getElementById('event1') as HTMLIFrameElement,
       document.getElementById('event2') as HTMLIFrameElement,
-      document.getElementById('event3') as HTMLIFrameElement,
-      document.getElementById('event4') as HTMLIFrameElement,
     ];
   }
 
@@ -50,13 +48,7 @@ export class EventsComponent implements AfterContentInit, OnDestroy {
         this.iframes[1].src += '';
         this.slideStartCounter++;
         return;
-      case 3:
-        this.iframes[2].src += '';
-        this.slideStartCounter++;
-        return;
       default:
-        this.iframes[3].src += '';
-        this.slideDelaySubscription.unsubscribe();
         return;
     }
   }
