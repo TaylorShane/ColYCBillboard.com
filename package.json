@@ -8,6 +8,9 @@
     "build:prod": "ng build --configuration production",
     "clean": "rimraf dist",
     "deploy": "ng build --configuration production --base-href /ColYCBillboard.com/ --output-path=docs/",
+    "release:major": "yarn version --immediate major && git push --follow-tags",
+    "release:minor": "yarn version --immediate minor && git push --follow-tags",
+    "release:patch": "yarn version --immediate patch && git push --follow-tags",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
